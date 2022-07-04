@@ -21,11 +21,12 @@ Route::get('/contact', function () {
     return 'contact';
 });
 
-Route::get('/', function () {
-    return 'Home page';
-})->name('home.index');
+Route::get('/posts/{id}', function ($id) {
+    return 'Blog post ' . $id;
+})->name('posts.show');
 
-Route::get('/contact', function () {
-    return 'Contact';
-})->name('home.contact');
+Route::get('/recent-posts/{days_ago?}', function ($daysAgo = 20) {
+    return 'Posts from ' . $daysAgo . ' days ago';
+})->name('posts.recent.index');
+
 
