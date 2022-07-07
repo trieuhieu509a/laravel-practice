@@ -1,0 +1,13 @@
+Eloquent
+BlogPosts::all();
+BlogPosts::find(1);
+BlogPosts::find([1,2,3]);
+BlogPosts::findOrFail(2);
+
+$post = new BlogPosts();
+...
+$post->save();
+
+Query builder
+User::factory()->count(5)->create();
+User::where('id', '>=', 2)->orderBy('id', 'desc')->get();
