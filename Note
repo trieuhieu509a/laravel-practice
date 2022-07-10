@@ -13,3 +13,7 @@ User::factory()->count(5)->create();
 User::where('id', '>=', 2)->orderBy('id', 'desc')->get();
 
 BlogPost::orderBy('created_at', 'desc')->take(5)->get()
+
+composer require laravel/ui
+php artisan ui bootstrap
+php artisan ui:controllers
