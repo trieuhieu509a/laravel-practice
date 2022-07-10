@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .border-red {
+      border-color: red;
+      border-style: dotted;
+      border-width: 2px;
+    }
+
+    .border-yellow {
+      border: 2px solid green;
+    }
+  </style>
+  <title>Bootstrap Flex</title>
+</head>
+
+<body class="p-5">
+  <h5>Main Axis / Cross Axis</h5>
+  <div><img src="https://mdn.mozillademos.org/files/15614/Basics1.png" alt="Row direction"></div>
+  <div><img src="https://mdn.mozillademos.org/files/15615/Basics2.png" alt="Column direction"></div>
+  <h5>Example 1, Flex</h5>
+  <div class="d-flex p-3 border-red mb-3">
+    <div class="border-yellow">First<br>First</div>
+    <div class="border-yellow">Second</div>
+    <div class="border-yellow">Third</div>
+  </div>
+
+  <h5>Example 2, Flex, Align Items Center</h5>
+  <div class="d-flex p-3 border-red mb-3 align-items-center">
+    <div class="border-yellow">First<br>First</div>
+    <div class="border-yellow">Second</div>
+    <div class="border-yellow">Third</div>
+  </div>
+
+  <h5>Example 3, Flex Column</h5>
+  <div class="d-flex flex-column p-3 border-red mb-3">
+    <div class="border-yellow">First<br>First</div>
+    <div class="border-yellow">Second</div>
+    <div class="border-yellow">Third</div>
+  </div>
+
+  <h5>Example 4, Flex Column, Align Items Center</h5>
+  <div class="d-flex flex-column p-3 border-red align-items-center mb-3">
+    <div class="border-yellow">First<br>First</div>
+    <div class="border-yellow">Second</div>
+    <div class="border-yellow">Third</div>
+  </div>
+</body>
+
+</html>
