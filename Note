@@ -22,3 +22,6 @@ sudo npm install --global cross-env
 npm install (--no-bin-links)
 npm run dev
 npm install sass-loader@10.1.1 --no-bin-links
+
+php artisan cache:clear
+php artisan make:test HomeTest
