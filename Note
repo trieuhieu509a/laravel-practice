@@ -25,3 +25,6 @@ npm install sass-loader@10.1.1 --no-bin-links
 
 php artisan cache:clear
 php artisan make:test HomeTest
+php artisan make:test PostTest
+
+
