@@ -27,7 +27,8 @@ php artisan cache:clear
 php artisan make:test HomeTest
 php artisan make:test PostTest
 
-**One to One Assigning relationship**
+# One to One relationship
+**Assigning relationship**
 php artisan tinker
 
     Case 1:
@@ -64,3 +65,19 @@ php artisan tinker
 
     Eage load 2 miltyple related entities:
     $author = Author::with(['profile', 'comments'])->whereKey(1)->first();
+
+# One to many relationship
+**Generate model**
+
+php artisan make:model Comment -m
+
+```
+    // function name is blogPost ( camel case , laravel will look for blog_post_id
+    // function name is post ( camel case , laravel will look for post_id
+    public function blogPost()
+    {
+        // return $this->belongsTo('App\BlogPost', 'post_id', 'blog_post_id');
+        return $this->belongsTo('App\Models\BlogPost');
+
+    }
+```
