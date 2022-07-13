@@ -27,4 +27,21 @@ php artisan cache:clear
 php artisan make:test HomeTest
 php artisan make:test PostTest
 
+One to One Assigning relationship
+php artisan tinker
+    Case 1:
+    $author = new Author();
+    $author->save();
+    $profile = new Profile();
+    $author->profile()->save($profile);
 
+    Case 2:
+    $author = Author::create();
+    $profile = new Profile();
+    $profile->author()->associate($author)->save();
+
+    Case 3:
+    $profile = new Profile();
+    $author = Author::create();
+    $profile->author_id = $author->id;
+    $profile->save();
