@@ -81,3 +81,25 @@ php artisan make:model Comment -m
 
     }
 ```
+case 1
+$comment = new Comment();
+$comment->content = 'comment 1';
+$blog->comments()->save($comment);
+
+case 2
+$comment2 = new Comment();
+$comment2->content = 'comment 2';
+$comment2->blogPost()->associate($blog)->save();
+
+case 3
+$comment3 = new Comment();
+$comment3->content = 'comment 3';
+$comment3->blog_post_id = $blog->id;
+$comment3->save();
+
+case 4 save many
+$comment5 = new Comment();
+$comment5->content = 'comment 5';
+$comment4 = new Comment();
+$comment4->content = 'comment 4';
+$blog->comments()->saveMany([$comment4, $comment5]);
