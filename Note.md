@@ -27,8 +27,9 @@ php artisan cache:clear
 php artisan make:test HomeTest
 php artisan make:test PostTest
 
-One to One Assigning relationship
+**One to One Assigning relationship**
 php artisan tinker
+
     Case 1:
     $author = new Author();
     $author->save();
@@ -45,3 +46,21 @@ php artisan tinker
     $author = Author::create();
     $profile->author_id = $author->id;
     $profile->save();
+
+**One to One Assigning relationship**
+php artisan tinker
+
+    Lazy load 1:
+    $author = Author::find(1);
+    $author->profile
+
+    Lazy load 2:
+    $profile = Profile::find(3);
+    $profile->author
+
+    Eage load 1:
+    $author = Author::with('profile')->whereKey(1);
+    $author = Author::with('profile')->whereKey(1)->first();
+
+    Eage load 2 miltyple related entities:
+    $author = Author::with(['profile', 'comments'])->whereKey(1)->first();
