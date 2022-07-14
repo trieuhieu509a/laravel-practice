@@ -81,6 +81,7 @@ php artisan make:model Comment -m
 
     }
 ```
+**Add data**
 case 1
 $comment = new Comment();
 $comment->content = 'comment 1';
@@ -103,3 +104,17 @@ $comment5->content = 'comment 5';
 $comment4 = new Comment();
 $comment4->content = 'comment 4';
 $blog->comments()->saveMany([$comment4, $comment5]);
+
+**Fetch data**
+
+Eage load
+BlogPost::with('comments')->get();
+BlogPost::all();
+
+Lazyload
+Case 1:
+$post = BlogPost::find(1);
+$post->comment
+Case 2:
+$comment = Comment::find(1);
+$comment->blogPost;
