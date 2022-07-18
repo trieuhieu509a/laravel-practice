@@ -16,18 +16,19 @@ class PostsController extends Controller
     public function index()
     {
         // Log query database
-        DB::connection()->enableQueryLog();
-//        $posts = BlogPost::all();
-        $posts = BlogPost::with('comments')->get();
-
-        foreach ($posts as $post) {
-            foreach ($post->comments as $comment) {
-                echo $comment->content;
-            }
-        }
-
-        dd(DB::getQueryLog());
-        return view('posts.index', ['posts' => BlogPost::all()]);
+//        DB::connection()->enableQueryLog();
+////        $posts = BlogPost::all();
+//        $posts = BlogPost::with('comments')->get();
+//
+//        foreach ($posts as $post) {
+//            foreach ($post->comments as $comment) {
+//                echo $comment->content;
+//            }
+//        }
+//
+//        dd(DB::getQueryLog());
+        // comnents_count
+        return view('posts.index', ['posts' => BlogPost::withCount('comments')->get()]);
     }
 
     /**
