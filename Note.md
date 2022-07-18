@@ -118,3 +118,20 @@ $post->comment
 Case 2:
 $comment = Comment::find(1);
 $comment->blogPost;
+
+# Querying relationship existence
+BlogPost::has('comments')->get();
+
+$comment = new Comment();
+$comment->content = 'abc';
+$comment->blog_post_id = 3;
+$comment->save();
+
+**fetch all blog post that have at least 2 comment**
+
+BlogPost::has('comments', '>=', 2)->get();
+
+**fetch all blog post that comment that have content contain 'abc'**
+BlogPost::whereHas('comments', function ($query) {
+    $query->where('content', 'like', '%abc%');
+})->get();
