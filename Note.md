@@ -142,3 +142,12 @@ BlogPost::doesntHave('comments')->get();
 BlogPost::whereDoesntHave('comments', function ($query) {
 $query->where('content', 'like', '%abc%');
 })->get();
+
+# Counting reladted models
+
+$post = BlogPost::withCount('comments')->get();
+echo $post->comments_count;
+
+BlogPost::withCount(['comments', 'comments as new_comments' => function ($query) {
+    $query->where('created_at', '>=', '2022-07-13 15:51:45');
+}])->get();
