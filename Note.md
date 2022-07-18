@@ -159,3 +159,13 @@ php artisan make:factory CommentFactory --model=Comment
 php artisan tinker
 Comment::factory()->count(3)->create(['blog_post_id' => 2])
 
+# Model factory callbacks [https://laravel.com/docs/8.x/database-testing#factory-callbacks](https://laravel.com/docs/8.x/database-testing#factory-callbacks)
+php artisan make:factory AuthorFactory
+php artisan make:factory ProfileFactory
+
+public function configure()
+{
+    return $this->afterCreating(function (Author $author) {
+        $author->profile()->save(Profile::factory()->make());
+    });
+}
