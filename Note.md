@@ -135,3 +135,10 @@ BlogPost::has('comments', '>=', 2)->get();
 BlogPost::whereHas('comments', function ($query) {
     $query->where('content', 'like', '%abc%');
 })->get();
+
+# Querying relationship absence
+BlogPost::doesntHave('comments')->get();
+
+BlogPost::whereDoesntHave('comments', function ($query) {
+$query->where('content', 'like', '%abc%');
+})->get();
