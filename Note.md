@@ -151,3 +151,11 @@ echo $post->comments_count;
 BlogPost::withCount(['comments', 'comments as new_comments' => function ($query) {
     $query->where('created_at', '>=', '2022-07-13 15:51:45');
 }])->get();
+
+# Models factory introduction [https://laravel.com/docs/8.x/database-testing#persisting-models](https://laravel.com/docs/8.x/database-testing#persisting-models)
+
+php artisan make:factory CommentFactory --model=Comment
+
+php artisan tinker
+Comment::factory()->count(3)->create(['blog_post_id' => 2])
+
