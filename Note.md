@@ -169,3 +169,8 @@ public function configure()
         $author->profile()->save(Profile::factory()->make());
     });
 }
+
+# Authentication
+**IMPORTANT: Laravel 7 and Laravel 8 Changes**
+composer require laravel/ui
+php artisan ui:controllers
