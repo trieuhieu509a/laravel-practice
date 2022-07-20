@@ -107,3 +107,7 @@ Route::prefix('/fun')->name('fun.')->group(function() use($posts) {
     })->name('download');
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

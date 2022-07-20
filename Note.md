@@ -174,3 +174,47 @@ public function configure()
 **IMPORTANT: Laravel 7 and Laravel 8 Changes**
 composer require laravel/ui
 php artisan ui:controllers
+
+
+php artisan ui:auth
+php artisan route:list
+
+class User extends Authenticatable
+protected $fillable = [
+    'name',
+    'email',
+    'password',
+];
+
+# Middleware
+In class LoginController extends Controller
+    $this->middleware('guest')->except('logout');
+    =>using middleware 'guest' but not for 'logout'
+$this->middleware('auth')->except('contact');
+
+
+'defaults' => [
+'guard' => 'web',
+'passwords' => 'users',
+],
+
+'guards' => [
+'web' => [
+'driver' => 'session',
+'provider' => 'users',
+],
+
+'providers' => [
+'users' => [
+'driver' => 'eloquent',
+'model' => App\Models\User::class,
+],
+
+'passwords' => [
+'users' => [
+'provider' => 'users',
+'table' => 'password_resets',
+'expire' => 60,
+'throttle' => 60,
+],
+],
