@@ -174,3 +174,8 @@ public function configure()
 **IMPORTANT: Laravel 7 and Laravel 8 Changes**
 composer require laravel/ui
 php artisan ui:controllers
+
+# Guest Middleware 
+$this->middleware('guest')->except('logout');
+'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+return redirect(RouteServiceProvider::HOME);
