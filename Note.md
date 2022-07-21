@@ -179,3 +179,8 @@ php artisan ui:controllers
 $this->middleware('guest')->except('logout');
 'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
 return redirect(RouteServiceProvider::HOME);
+
+# Csrf
+VerifyCsrfToken
+Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
+session storage in : storage/framework/sessions
