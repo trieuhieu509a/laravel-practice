@@ -29,6 +29,7 @@ Route::get('/', [HomeController::class, 'home'])
     ->name('home.index');
 Route::get('/contact', [HomeController::class, 'contact'])
     ->name('home.contact');
+Auth::routes();
 
 Route::get('/single', AboutController::class);
 
