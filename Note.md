@@ -184,3 +184,12 @@ return redirect(RouteServiceProvider::HOME);
 VerifyCsrfToken
 Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
 session storage in : storage/framework/sessions
+
+# Seeding
+php artisan make:migration add_user_to_blog_posts_table
+
+**For table already have record exist**
+$table->unsignedBigInteger('user_id')->default(0); or $table->unsignedInteger('user_id')->nullable()
+
+**rollback all migration then run them again**
+php artisan migrate:refresh
