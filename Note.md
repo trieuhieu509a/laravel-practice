@@ -193,3 +193,6 @@ $table->unsignedBigInteger('user_id')->default(0); or $table->unsignedInteger('u
 
 **rollback all migration then run them again**
 php artisan migrate:refresh
+
+**generate seeding file and load data in database**
+php artisan db:seed
