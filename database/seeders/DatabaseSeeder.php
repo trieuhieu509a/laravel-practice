@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\BlogPost;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Str;
@@ -15,17 +17,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory()->state([
+        $doe = \App\Models\User::factory()->state([
              'name' => 'John Doe',
              'email' => 'john@laravel.test',
          ])->create();
-        \App\Models\User::factory(20)->create();
-//        DB::table('users')->insert([
-//            'name' => 'John Doe',
-//            'email' => 'john@laravel.test',
-//            'email_verified_at' => now(),
-//            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-//            'remember_token' => Str::random(10),
-//        ]);
+        $else = \App\Models\User::factory(20)->create();
+
+        $users = $else->concat([$doe]);
+        //$users = $else->push($doe);
+
+        $posts = BlogPost::factory(50)->make()->each(function(BlogPost $post) use ($users) {
+//            $post->user_id = $users->random()->id;
+//            $post->save();
+            $post->user()->associate($users->random())->save();
+        });
+
+        $comments = Comment::factory(150)->make()->each(function (Comment $comment) use ($posts) {
+//            $comment->blog_post_id = $posts->random()->id;
+//            $comment->save();
+            $comment->blogPost()->associate($posts->random())->save();
+        });
     }
 }

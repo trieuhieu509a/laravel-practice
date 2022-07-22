@@ -197,3 +197,6 @@ php artisan migrate:refresh --seed
 
 **generate seeding file and load data in database**
 php artisan db:seed
+
+BlogPost::factory(50)->create()
+BlogPost::factory(50)->make() : make not save immediately
