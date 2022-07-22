@@ -195,8 +195,17 @@ $table->unsignedBigInteger('user_id')->default(0); or $table->unsignedInteger('u
 php artisan migrate:refresh
 php artisan migrate:refresh --seed
 
-**generate seeding file and load data in database**
+**Generate seeding file**
+php artisan make:seeder UsersTableSeeder
+php artisan make:seeder BlogPostsTableSeeder
+php artisan make:seeder CommentsTableSeeder
+
+**Load all seeder in database**
 php artisan db:seed
+or run individual seeder class
+php artisan db:seed --class=UsersTableSeeder
 
 BlogPost::factory(50)->create()
 BlogPost::factory(50)->make() : make not save immediately
+
+composer dump-autoload : run after create any seeder class

@@ -17,25 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $doe = \App\Models\User::factory()->state([
-             'name' => 'John Doe',
-             'email' => 'john@laravel.test',
-         ])->create();
-        $else = \App\Models\User::factory(20)->create();
-
-        $users = $else->concat([$doe]);
-        //$users = $else->push($doe);
-
-        $posts = BlogPost::factory(50)->make()->each(function(BlogPost $post) use ($users) {
-//            $post->user_id = $users->random()->id;
-//            $post->save();
-            $post->user()->associate($users->random())->save();
-        });
-
-        $comments = Comment::factory(150)->make()->each(function (Comment $comment) use ($posts) {
-//            $comment->blog_post_id = $posts->random()->id;
-//            $comment->save();
-            $comment->blogPost()->associate($posts->random())->save();
-        });
+        $this->call([
+            UsersTableSeeder::class,
+            BlogPostsTableSeeder::class,
+            CommentsTableSeeder::class
+        ]);
     }
 }
