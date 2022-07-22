@@ -224,4 +224,7 @@ $this->command->call('migrate:refresh');
 $this->command->info('Database was refreshed');
 }
 `
-then run : php artisan db:seed
+then run :
+php artisan db:seed
+or
+php artisan db:seed -n : use default paramater value
