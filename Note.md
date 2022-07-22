@@ -209,3 +209,19 @@ BlogPost::factory(50)->create()
 BlogPost::factory(50)->make() : make not save immediately
 
 composer dump-autoload : run after create any seeder class
+
+**Seeder interactive**
+abstract class Seeder
+ * 
+ * @var \Illuminate\Console\Command
+ */
+protected $command;
+ * 
+`
+if ($this->command->confirm('Do you want to refresh the database?')) {
+
+$this->command->call('migrate:refresh');
+$this->command->info('Database was refreshed');
+}
+`
+then run : php artisan db:seed

@@ -15,7 +15,15 @@ class CommentsTableSeeder extends Seeder
     public function run()
     {
         $posts = \App\Models\BlogPost::all();
-        $comments = Comment::factory(150)->make()->each(function (Comment $comment) use ($posts) {
+
+        if ($posts->count() === 0) {
+            $this->command->info('There are no blog posts, so no comments will be added');
+            return;
+        }
+
+        $commentsCount = (int)$this->command->ask('How many comments would you like?', 150);
+
+        $comments = Comment::factory($commentsCount)->make()->each(function (Comment $comment) use ($posts) {
 //            $comment->blog_post_id = $posts->random()->id;
 //            $comment->save();
             $comment->blogPost()->associate($posts->random())->save();

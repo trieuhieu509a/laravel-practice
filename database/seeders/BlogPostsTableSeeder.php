@@ -14,8 +14,9 @@ class BlogPostsTableSeeder extends Seeder
      */
     public function run()
     {
+        $blogCount = (int)$this->command->ask('How many blog posts would you like?', 50);
         $users = \App\Models\User::all();
-        $posts = BlogPost::factory(50)->make()->each(function(BlogPost $post) use ($users) {
+        $posts = BlogPost::factory($blogCount)->make()->each(function(BlogPost $post) use ($users) {
 //            $post->user_id = $users->random()->id;
 //            $post->save();
             $post->user()->associate($users->random())->save();
