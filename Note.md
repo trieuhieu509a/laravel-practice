@@ -228,3 +228,6 @@ then run :
 php artisan db:seed
 or
 php artisan db:seed -n : use default paramater value
+
+php artisan make:migration AddCascadeDeleteToCommentsTable
+php artisan migrate
