@@ -236,3 +236,13 @@ php artisan migrate
 **soft delete**
 php artisan make:migration AddSoftDeletesToBlogPostsTable
 php artisan migrate => create column deteted_at
+
+**query soft delete**
+php artisan tinker
+*     BlogPost::all()->pluck('id'); => get list blog post id NON include deleted
+*     BlogPost::withTrashed()->get()->pluck('id');
+*     BlogPost::onlyTrashed()->get()->pluck('id');
+*     BlogPost::onlyTrashed()->where('id', 13)->get()->pluck('id');
+  *     $all = BlogPost::withTrashed()->get();
+  *     $post = $all->find(2)
+  *      $post->trashed() will return true
