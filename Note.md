@@ -229,5 +229,10 @@ php artisan db:seed
 or
 php artisan db:seed -n : use default paramater value
 
+**relation delete using database**
 php artisan make:migration AddCascadeDeleteToCommentsTable
 php artisan migrate
+
+**soft delete**
+php artisan make:migration AddSoftDeletesToBlogPostsTable
+php artisan migrate => create column deteted_at
