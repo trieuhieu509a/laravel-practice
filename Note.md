@@ -238,6 +238,7 @@ php artisan make:migration AddSoftDeletesToBlogPostsTable
 php artisan migrate => create column deteted_at
 
 **query soft delete**
+
 php artisan tinker
 *     BlogPost::all()->pluck('id'); => get list blog post id NON include deleted
 *     BlogPost::withTrashed()->get()->pluck('id');
@@ -246,3 +247,17 @@ php artisan tinker
   *     $all = BlogPost::withTrashed()->get();
   *     $post = $all->find(2)
   *      $post->trashed() will return true
+
+**soft delete relation**
+
+php artisan make:migration AddSoftDeleteSToCommnentsTable
+php artisan migrate
+$post = BlogPost::has('comments')->get()->first();
+$post->delete();
+
+**soft delete relation**
+$post = BlogPost::onlyTrashed()->find(3);
+$post->restore();
+
+**absolute delete (Non revertable)**
+$post->forceDelete(); ( using ->onDelete('cascade'); wil delete also in comments )
