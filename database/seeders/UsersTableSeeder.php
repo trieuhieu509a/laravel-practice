@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
         \App\Models\User::factory()->state([
             'name' => 'John Doe',
             'email' => 'john@laravel.test',
+            'is_admin' => true
         ])->create();
         \App\Models\User::factory($usersCount)->create();
 
