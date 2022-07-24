@@ -265,3 +265,8 @@ $post->forceDelete(); ( using ->onDelete('cascade'); wil delete also in comments
 **verify permissions of the user**
 Gate::forUser($user)->denies('update-post', $post);
 Gate::forUser($user)->allows('update-post', $post);
+
+**Policy**
+
+php artisan make:policy BlogPostPolicy
+php artisan make:policy BlogPostPolicy --model=BlogPost
