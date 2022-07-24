@@ -19,6 +19,9 @@ class BlogPostFactory extends Factory
         ];
     }
 
+    /**
+     * @return $this
+     */
     public function newTitle()
     {
         return $this->state([
