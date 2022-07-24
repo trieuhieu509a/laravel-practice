@@ -262,7 +262,9 @@ $post->restore();
 **absolute delete (Non revertable)**
 $post->forceDelete(); ( using ->onDelete('cascade'); wil delete also in comments )
 
-**verify permissions of the user**
+**verify permissions of the user using Gate**
+
+gate suggest for using verify permission without model 
 Gate::forUser($user)->denies('update-post', $post);
 Gate::forUser($user)->allows('update-post', $post);
 
