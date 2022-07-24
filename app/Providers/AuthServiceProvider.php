@@ -29,8 +29,8 @@ class AuthServiceProvider extends ServiceProvider
 //        Gate::define('posts.update', function ($user, $post) {
 //            return $user->id == $post->user_id;
 //        });
-        // Gate::allows('update-post', $post);
-        // $this->authorize('update-post',)
+        // Gate::allows('posts.update', $post);
+        // $this->authorize('posts.update',)
 //
 //        Gate::define('posts.delete', function ($user, $post) {
 //            return $user->id == $post->user_id;
@@ -45,12 +45,12 @@ class AuthServiceProvider extends ServiceProvider
         // comments.create, comments.update etc.
 
 
-//        Gate::before(function ($user, $ability) {
-//            if ($user->is_admin && in_array($ability, ['update-post'])) {
-//                return true;
-//            }
-//            return false;
-//        });
+        Gate::before(function ($user, $ability) {
+            if ($user->is_admin && in_array($ability, ['update', 'delete'])) {
+                return true;
+            }
+            return false;
+        });
 
         // Gate::after(function ($user, $ability, $result) {
         //     if ($user->is_admin) {
