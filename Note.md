@@ -270,3 +270,29 @@ Gate::forUser($user)->allows('update-post', $post);
 
 php artisan make:policy BlogPostPolicy
 php artisan make:policy BlogPostPolicy --model=BlogPost
+
+way 1 :
+Explain:
+Gate::define('posts.delete', 'App\Policies\BlogPostPolicy@delete');
+posts.delete: 'delete' keyword mapping with 'BlogPostPolicy@delete' function.
+
+way 2 :
+protected $policies = [
+'App\Models\BlogPost' => 'App\Policies\BlogPostPolicy',
+];
+$this->authorize('update', $post);
+with 'update' is function inside BlogPostPolicy
+
+way 3 :
+
+Mapping method from controller action to Policy
+
+`
+[
+'show' => 'view',
+'create' => 'create',
+'store' => 'create',
+'edit' => 'update',
+'update' => 'update',
+'destroy' => 'delete',
+]`

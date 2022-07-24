@@ -7,6 +7,14 @@ use App\Models\BlogPost;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
+// [
+//     'show' => 'view',
+//     'create' => 'create',
+//     'store' => 'create',
+//     'edit' => 'update',
+//     'update' => 'update',
+//     'destroy' => 'delete',
+// ]
 class PostsController extends Controller
 {
     public function __construct()
@@ -87,7 +95,9 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = BlogPost::findOrFail($id);
-        $this->authorize('posts.update', $post);
+//        $this->authorize('posts.update', $post);
+//        $this->authorize('update', $post);
+        $this->authorize($post);
 
         return view('posts.edit', ['post' => $post]);
     }
@@ -106,7 +116,8 @@ class PostsController extends Controller
 //        if (Gate::denies('update-post', $post)) {
 //            abort(403, "You can't edit this blog post!");
 //        }
-        $this->authorize('posts.update', $post);
+//        $this->authorize('posts.update', $post);
+        $this->authorize($post);
 
         $validated = $request->validated();
         $post->fill($validated);
@@ -130,7 +141,8 @@ class PostsController extends Controller
 //        if (Gate::denies('delete-post', $post)) {
 //            abort(403, "You can't delete this blog post!");
 //        }
-        $this->authorize('posts.delete', $post);
+//        $this->authorize('posts.delete', $post);
+        $this->authorize($post);
 
         $post->delete();
 
