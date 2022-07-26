@@ -65,8 +65,9 @@ class PostsController extends Controller
      */
     public function store(StorePost $request)
     {
-        $validated = $request->validated();
-        $post = BlogPost::create($validated);
+        $validatedData = $request->validated();
+        $validatedData['user_id'] = $request->user()->id;
+        $post = BlogPost::create($validatedData); // mass assigment
 
         $request->session()->flash('status', 'The blog post was created!');
 
