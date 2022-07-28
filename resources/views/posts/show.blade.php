@@ -11,6 +11,16 @@
         <div class="alert alert-info">New!</div>
     @endif
 
+    @if ((new Carbon\Carbon())->diffInMinutes($post->created_at) < 20000000)
+{{--        @component('badge', ['type' => 'primary'])--}}
+{{--            Brand new Post!--}}
+{{--        @endcomponent--}}
+
+        <x-badge :type="'primary'">
+            Brand new Post!
+        </x-badge>
+    @endif
+
     <h4>Comments</h4>
 
     @forelse($post->comments as $comment)
