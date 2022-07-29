@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
 @section('title', $post->title)
 
@@ -11,7 +11,7 @@
         <div class="alert alert-info">New!</div>
     @endif
 
-    @if ((new Carbon\Carbon())->diffInMinutes($post->created_at) < 20000000)
+{{--    @if ((new Carbon\Carbon())->diffInMinutes($post->created_at) < 2000)--}}
 {{--        @component('badge', ['type' => 'primary'])--}}
 {{--            Brand new Post!--}}
 {{--        @endcomponent--}}
@@ -19,10 +19,11 @@
 {{--        <x-badge :type="'primary'">--}}
 {{--            Brand new Post!--}}
 {{--        </x-badge>--}}
-        @badge
-            Brand new Post!
-        @endbadge
-    @endif
+{{--    @endif--}}
+
+    @badge(['show' => now()->diffInMinutes($post->created_at) < 3000])
+    Brand new Post!
+    @endbadge
 
     <h4>Comments</h4>
 
