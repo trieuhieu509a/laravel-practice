@@ -16,9 +16,12 @@
 {{--            Brand new Post!--}}
 {{--        @endcomponent--}}
 
-        <x-badge :type="'primary'">
+{{--        <x-badge :type="'primary'">--}}
+{{--            Brand new Post!--}}
+{{--        </x-badge>--}}
+        @badge
             Brand new Post!
-        </x-badge>
+        @endbadge
     @endif
 
     <h4>Comments</h4>
