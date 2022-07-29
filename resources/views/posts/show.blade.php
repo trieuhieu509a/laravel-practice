@@ -1,15 +1,16 @@
-{{--@extends('layouts.app')--}}
+@extends('layouts.app')
 
 @section('title', $post->title)
 
 @section('content')
-    <h1>{{ $post->title }}</h1>
-    <p>{{ $post->content }}</p>
-    <p>Added {{ $post->created_at->diffForHumans() }}</p>
+    <h1>
+        {{ $post->title }}
+        <x-badge :show="(now()->diffInMinutes($post->created_at) < 3000000000000)" :slot="'Brand new Post!'">New Post!</x-badge>
+    </h1>
 
-    @if(now()->diffInMinutes($post->created_at) < 5)
-        <div class="alert alert-info">New!</div>
-    @endif
+    <p>{{ $post->content }}</p>
+    <x-updated :date="$post->created_at" :name="$post->user->name"></x-updated>
+    <x-updated :date="$post->updated_at">Updated</x-updated>
 
 {{--    @if ((new Carbon\Carbon())->diffInMinutes($post->created_at) < 2000)--}}
 {{--        @component('badge', ['type' => 'primary'])--}}
@@ -21,9 +22,6 @@
 {{--        </x-badge>--}}
 {{--    @endif--}}
 
-    @badge(['show' => now()->diffInMinutes($post->created_at) < 3000])
-    Brand new Post!
-    @endbadge
 
     <h4>Comments</h4>
 
@@ -31,9 +29,7 @@
         <p>
             {{ $comment->content }}
         </p>
-        <p class="text-muted">
-            added {{ $comment->created_at->diffForHumans() }}
-        </p>
+        <x-updated :date="$comment->created_at"></x-updated>
     @empty
         <p>No comments yet!</p>
     @endforelse
