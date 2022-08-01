@@ -302,3 +302,5 @@ Mapping method from controller action to Policy
 
 **Some tinker test**
 User::scopeWithMostBlogPostsLastMonth()->get();
+
+cache config file : cache.php
