@@ -303,4 +303,15 @@ Mapping method from controller action to Policy
 **Some tinker test**
 User::scopeWithMostBlogPostsLastMonth()->get();
 
+
+**Working with cache**
 cache config file : cache.php
+Cache::put('data', 'Hello from cache', 50);
+Cache::has('data');
+Cache::get('data');
+// get with default value
+Cache::get('data2', 'Hello');
+// increament value +1
+Cache::increment('counter');
+Cache::increment('counter');
+Cache::decrement('counter');
