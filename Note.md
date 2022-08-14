@@ -315,3 +315,11 @@ Cache::get('data2', 'Hello');
 Cache::increment('counter');
 Cache::increment('counter');
 Cache::decrement('counter');
+
+**Cache rags**
+```laravel
+Cache::tags(['people', 'artists'])->put('John', 'Hello Um John', 10)
+Cache::tags(['people', 'authors'])->put('Anne', 'Hello Um Anne', 10)
+Cache::tags(['people'])->flush()
+
+```
