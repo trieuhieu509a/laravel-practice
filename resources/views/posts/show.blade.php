@@ -22,7 +22,8 @@
 {{--        </x-badge>--}}
 {{--    @endif--}}
 
-
+    <p>Currently read by {{ $counter }} people</p>
+    <p>Currently usersKey: {{ $usersKey }}</p>
     <h4>Comments</h4>
 
     @forelse($post->comments as $comment)
