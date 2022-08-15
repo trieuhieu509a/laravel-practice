@@ -323,3 +323,36 @@ Cache::tags(['people', 'authors'])->put('Anne', 'Hello Um Anne', 10)
 Cache::tags(['people'])->flush()
 
 ```
+
+
+php artisan make:migration CreateTagsTable
+# Pivot table
+php artisan make:migration CreateBlogPostTagTable
+pivot table should have name as model name but convert to uppercase
+
+```
+
+    public function up()
+    {
+        Schema::create('blog_post_tag', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('blog_post_id')->index();
+            $table
+                ->foreign('blog_post_id')
+                ->references('id')
+                ->on('blog_posts')
+                ->cascadeOnDelete()
+            ;
+            $table->unsignedBigInteger('tag_id')->index();
+            $table
+                ->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->cascadeOnDelete()
+            ;
+            $table->timestamps();
+        });
+    }
+```
+php artisan make:model Tag -m
+
