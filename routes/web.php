@@ -34,6 +34,7 @@ Route::get('/contact', [HomeController::class, 'contact'])
 Route::get('/secret', [HomeController::class, 'secret'])
     ->name('secret')
     ->middleware('can:home.secret');
+Route::get('/posts/tag/{tag}', '\App\Http\Controllers\PostTagController@index')->name('posts.tags.index');
 Auth::routes();
 
 Route::get('/single', AboutController::class);
