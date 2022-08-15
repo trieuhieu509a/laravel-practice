@@ -372,3 +372,32 @@ php artisan make:model Tag -m
     => pivot table will convert form BlogPostTag to blog_post_tag 
 ```
 
+$tag1 = new App\Models\Tag();
+$tag1->name = "Science";
+$tag1->save();
+
+$tag2 = new App\Models\Tag();
+$tag2->name = "Politics";
+$tag2->save();
+
+$blogPost = BlogPost::find(1);
+
+case 1:
+$blogPost->tags()->attach($tag1);
+case 2: Note it will cause duplicate record in blog_post_tag
+$blogPost->tags()->attach([$tag1->id, $tag2->id]);
+case 3:
+$tag3 = new App\Models\Tag();
+$tag3->name = "Sport";
+$tag3->save();
+$blogPost->tags()->syncWithoutDetaching([$tag1->id, $tag2->id, $tag3->id]);
+![img.png](img.png)
+$blogPost->tags()->sync([$tag1->id, $tag2->id]);
+![img_1.png](img_1.png)
+Node: sync vs syncWithoutDetaching is that with sync if not provide one relations that already exist on table, it actually removed 
+
+$blogPost->tags()->detach($tag1);
+$blogPost->tags()->attach($tag3);
+**remove all association**
+$blogPost->tags()->detach();
+$blogPost->tags()->sync([]);
