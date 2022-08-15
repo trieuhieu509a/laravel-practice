@@ -325,8 +325,9 @@ Cache::tags(['people'])->flush()
 ```
 
 
+# Many to many relation
 php artisan make:migration CreateTagsTable
-# Pivot table
+**Pivot table**
 php artisan make:migration CreateBlogPostTagTable
 pivot table should have name as model name but convert to uppercase
 
@@ -355,4 +356,19 @@ pivot table should have name as model name but convert to uppercase
     }
 ```
 php artisan make:model Tag -m
+
+**168 Defining Many to many on model**
+```
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+    ...
+    public function blogPosts()
+    {
+        return $this->belongsToMany('App\BlogPost');
+    }
+    
+    => pivot table will convert form BlogPostTag to blog_post_tag 
+```
 

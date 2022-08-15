@@ -79,4 +79,9 @@ class BlogPost extends Model
             $blogPost->comments()->restore();
         });
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }
