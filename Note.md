@@ -382,6 +382,7 @@ $tag2->save();
 
 $blogPost = BlogPost::find(1);
 
+# 169
 case 1:
 $blogPost->tags()->attach($tag1);
 case 2: Note it will cause duplicate record in blog_post_tag
@@ -401,3 +402,26 @@ $blogPost->tags()->attach($tag3);
 **remove all association**
 $blogPost->tags()->detach();
 $blogPost->tags()->sync([]);
+
+# 170 Querying the many to many relation and pivot tables ( add timestamp for tracking updated_at and created_at )
+$blogPost = BlogPost::find(1);
+$blogPost->tags()->sync([1, 2]);
+$tags = $blogPost->tags;
+$tags[0]->pivot;
+$tags[0]->pivot->created_at;
+
+$tag = App\Models\Tag::find(1);
+$tag->blogPost;
+$tag->blogPost->pivot;
+
+```
+public function blogPosts()
+    {
+        return $this->belongsToMany('App\Models\BlogPost')->withTimestamps()
+            ->as('tagged')
+            ;
+    }
+```
+
+$tag = App\Models\Tag::find(1);
+$tag->blogPost->tagged;
