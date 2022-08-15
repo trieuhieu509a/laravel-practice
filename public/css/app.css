@@ -12154,3 +12154,11 @@ fieldset:disabled .btn {
   }
 }
 
+.badge{
+    color: #0dcaf0;
+}
+
+.badge-lg {
+    font-size: 1.0rem;
+
+}

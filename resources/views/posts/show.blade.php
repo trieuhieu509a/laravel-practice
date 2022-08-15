@@ -26,6 +26,8 @@
     <p>Currently usersKey: {{ $usersKey }}</p>
     <h4>Comments</h4>
 
+    <x-tags :tags="$post->tags"></x-tags>
+
     @forelse($post->comments as $comment)
         <p>
             {{ $comment->content }}
