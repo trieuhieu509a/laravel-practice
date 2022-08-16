@@ -425,3 +425,7 @@ public function blogPosts()
 
 $tag = App\Models\Tag::find(1);
 $tag->blogPost->tagged;
+
+
+php artisan make:controller PostCommentController
+php artisan make:request StoreComment
