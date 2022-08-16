@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 // [
 //     'show' => 'view',
@@ -61,7 +62,7 @@ class PostsController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['user_id'] = $request->user()->id;
-        $post = BlogPost::create($validatedData); // mass assigment
+        $blogPost = BlogPost::create($validatedData);
 
         $hasFile = $request->hasFile('thumbnail');
         dump($hasFile);
@@ -73,12 +74,16 @@ class PostsController extends Controller
             dump($file->getClientOriginalExtension());
 
             dump($file->store('thumbails'));
+            dump(Storage::disk('public')->putFile('thumbails', $file));
+
+            dump($file->storeAs('thumbails', $blogPost->id . '.'. $file->guessExtension()));
+            dump(Storage::disk('local')->putFileAs('thumbails', $file, $blogPost->id . '.' . $file->guessExtension()));
         }
         die;
 
-        $request->session()->flash('status', 'The blog post was created!');
+        $request->session()->flash('status', 'Blog post was created!');
 
-        return redirect()->route('posts.show', ['post' => $post->id]);
+        return redirect()->route('posts.show', ['post' => $blogPost->id]);
     }
 
     /**
