@@ -49,6 +49,16 @@ class BlogPost extends Model
         return $this->belongsTo(User::class)->latest();
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
+    }
+
+    public function image()
+    {
+        return $this->hasOne('App\Models\Image');
+    }
+
     public function scopeLatest(Builder $query)
     {
         return $query->orderBy(static::CREATED_AT, 'desc');
@@ -88,10 +98,5 @@ class BlogPost extends Model
         static::restoring(function (BlogPost $blogPost) {
             $blogPost->comments()->restore();
         });
-    }
-
-    public function tags()
-    {
-        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
     }
 }

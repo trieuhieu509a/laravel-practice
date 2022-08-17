@@ -429,3 +429,7 @@ $tag->blogPost->tagged;
 
 php artisan make:controller PostCommentController
 php artisan make:request StoreComment
+
+php artisan storage:link
+
+php artisan make:model Image --migration
