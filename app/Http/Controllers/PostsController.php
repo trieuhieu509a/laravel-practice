@@ -76,8 +76,11 @@ class PostsController extends Controller
             dump($file->store('thumbails'));
             dump(Storage::disk('public')->putFile('thumbails', $file));
 
-            dump($file->storeAs('thumbails', $blogPost->id . '.'. $file->guessExtension()));
-            dump(Storage::disk('local')->putFileAs('thumbails', $file, $blogPost->id . '.' . $file->guessExtension()));
+            $name1 = $file->storeAs('thumbails', $blogPost->id . '.'. $file->guessExtension());
+            $name2 = Storage::disk('local')->putFileAs('thumbails', $file, $blogPost->id . '.' . $file->guessExtension());
+
+            dump(Storage::url($name1));
+            dump(Storage::disk('local')->url($name2));
         }
         die;
 
