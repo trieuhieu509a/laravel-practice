@@ -11,6 +11,9 @@
             </h1>
 
             <p>{{ $post->content }}</p>
+            <img src="{{ $post->image->url() }}" />
+            <img src="{{ Storage::url($post->image->path) }}" />
+
             <x-updated :date="$post->created_at" :name="$post->user->name"></x-updated>
             <x-updated :date="$post->updated_at">Updated</x-updated>
 
