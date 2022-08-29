@@ -433,3 +433,8 @@ php artisan make:request StoreComment
 php artisan storage:link
 
 php artisan make:model Image --migration
+
+
+php artisan make:controller UserController --resource --model=User
+**policy :**
+![img_2.png](img_2.png)
