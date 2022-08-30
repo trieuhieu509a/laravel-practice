@@ -444,3 +444,4 @@ polymorphic relation
 
 imageable_id : 'image' is table then 'able' then 'id'
 imageable_type : 'image' is table then 'able' then 'type'
+$table->morphs('imageable');
