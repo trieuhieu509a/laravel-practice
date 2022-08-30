@@ -438,3 +438,9 @@ php artisan make:model Image --migration
 php artisan make:controller UserController --resource --model=User
 **policy :**
 ![img_2.png](img_2.png)
+
+
+polymorphic relation
+
+imageable_id : 'image' is table then 'able' then 'id'
+imageable_type : 'image' is table then 'able' then 'type'
