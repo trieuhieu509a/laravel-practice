@@ -11,7 +11,7 @@
 </h3>
 
 {{--<p class="text-muted">Added {{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}</p>--}}
-<x-updated :date="$post->created_at" name="{{$post->user->name}}"></x-updated>
+<x-updated :date="$post->created_at" name="{{$post->user->name}}" :userId="$post->user->id"></x-updated>
 
 <x-tags :tags="$post->tags"></x-tags>
 

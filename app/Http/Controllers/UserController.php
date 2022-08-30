@@ -10,7 +10,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-//        $this->authorizeResource(User::class, 'user');
+        $this->authorizeResource(User::class, 'user');
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        dd($user);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        dd($user);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
