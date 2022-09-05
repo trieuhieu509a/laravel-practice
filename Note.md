@@ -445,3 +445,6 @@ polymorphic relation
 imageable_id : 'image' is table then 'able' then 'id'
 imageable_type : 'image' is table then 'able' then 'type'
 $table->morphs('imageable');
+
+**One to many polymorphic migration and relation**
+php artisan make:migration AddPolymorphToCommentsTable

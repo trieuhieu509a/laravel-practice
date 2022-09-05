@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,11 +16,16 @@ class Comment extends Model
 
     // function name is blogPost ( camel case , laravel will look for blog_post_id
     // function name is post ( camel case , laravel will look for post_id
-    public function blogPost()
-    {
-        // return $this->belongsTo('App\BlogPost', 'post_id', 'blog_post_id');
-        return $this->belongsTo('App\Models\BlogPost');
+//    public function blogPost()
+//    {
+//        // return $this->belongsTo('App\BlogPost', 'post_id', 'blog_post_id');
+//        return $this->belongsTo('App\Models\BlogPost');
+//
+//    }
 
+    public function commentable()
+    {
+        return $this->morphTo();
     }
 
     public function user()
@@ -39,9 +43,16 @@ class Comment extends Model
         parent::boot();
 
         static::creating(function (Comment $comment) {
-            Cache::tags(['blog-post'])->forget("blog-post-{$comment->blog_post_id}");
-            Cache::tags(['blog-post'])->forget('mostCommented');
+            if ($comment->commentable_type === BlogPost::class) {
+                Cache::tags(['blog-post'])->forget("blog-post-{$comment->commentable_id}");
+                Cache::tags(['blog-post'])->forget('mostCommented');
+            }
         });
+
+//        static::creating(function (Comment $comment) {
+//            Cache::tags(['blog-post'])->forget("blog-post-{$comment->blog_post_id}");
+//            Cache::tags(['blog-post'])->forget('mostCommented');
+//        });
 
 //        static::addGlobalScope(new LatestScope);
     }
