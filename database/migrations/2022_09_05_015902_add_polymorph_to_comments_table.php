@@ -29,7 +29,7 @@ class AddPolymorphToCommentsTable extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->dropMorphs('commentable');
-            $table->unsignedInteger('blog_post_id')->index();
+            $table->unsignedBigInteger('blog_post_id')->index();
             $table->foreign('blog_post_id')->references('id')->on('blog_posts');
         });
     }

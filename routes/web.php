@@ -36,6 +36,7 @@ Route::get('/secret', [HomeController::class, 'secret'])
     ->middleware('can:home.secret');
 Route::get('/posts/tag/{tag}', '\App\Http\Controllers\PostTagController@index')->name('posts.tags.index');
 Route::resource('posts.comments', '\App\Http\Controllers\PostCommentController')->only(['store']);
+Route::resource('users.comments', '\App\Http\Controllers\UserCommentController')->only(['store']);
 Route::resource('users', '\App\Http\Controllers\UserController')->only(['show', 'edit', 'update']);
 Auth::routes();
 
