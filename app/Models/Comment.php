@@ -43,6 +43,8 @@ class Comment extends Model
         parent::boot();
 
         static::creating(function (Comment $comment) {
+            // dump($comment);
+            // dd(BlogPost::class);
             if ($comment->commentable_type === BlogPost::class) {
                 Cache::tags(['blog-post'])->forget("blog-post-{$comment->commentable_id}");
                 Cache::tags(['blog-post'])->forget('mostCommented');

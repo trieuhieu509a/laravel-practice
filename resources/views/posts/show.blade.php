@@ -41,18 +41,8 @@
             <p>Currently usersKey: {{ $usersKey }}</p>
             <h4>Comments</h4>
 
-            @include('comments._form')
-
-            <x-tags :tags="$post->tags"></x-tags>
-
-            @forelse($post->comments as $comment)
-                <p>
-                    {{ $comment->content }}
-                </p>
-                <x-updated :date="$comment->created_at"  :name="$comment->user->name"></x-updated>
-            @empty
-                <p>No comments yet!</p>
-            @endforelse
+            <x-commentForm route="{{ route('posts.comments.store', ['post' => $post->id]) }}"></x-commentForm>
+            <x-commentList :comments="$post->comments"></x-commentList>
         </div>
         <div class="col-4">
             @include('posts._activity')
