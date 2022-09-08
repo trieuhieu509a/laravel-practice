@@ -448,3 +448,6 @@ $table->morphs('imageable');
 
 **One to many polymorphic migration and relation**
 php artisan make:migration AddPolymorphToCommentsTable
+
+**Popymorphic Table name check**
+Str::plural($tablename);
