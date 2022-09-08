@@ -64,7 +64,7 @@ class PostTest extends TestCase
             ->assertStatus(302)
             ->assertSessionHas('status');
 
-        $this->assertEquals(session('status'), 'The blog post was created!');
+        $this->assertEquals(session('status'), 'Blog post was created!');
     }
 
     public function testStoreFail()
