@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Scopes\DeletedAdminScope;
 use App\Scopes\LatestScope;
+use App\Traits\Taggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +33,7 @@ class BlogPost extends Model
 {
 //    protected $table = 'blogposts';
 
-    use SoftDeletes;
+    use SoftDeletes, Taggable;
 
     protected $fillable = ['title', 'content', 'user_id'];
 
@@ -47,11 +48,6 @@ class BlogPost extends Model
     {
         // ask Laravel to use squarest scope when it fetching relation by default
         return $this->belongsTo(User::class)->latest();
-    }
-
-    public function tags()
-    {
-        return $this->morphToMany('App\Models\Tag', 'taggable')->withTimestamps();
     }
 
     public function image()
