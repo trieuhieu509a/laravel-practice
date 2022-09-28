@@ -451,3 +451,13 @@ php artisan make:migration AddPolymorphToCommentsTable
 
 **Popymorphic Table name check**
 Str::plural($tablename);
+
+# Mail
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=...
+MAIL_PASSWORD=...
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
