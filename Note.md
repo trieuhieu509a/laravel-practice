@@ -453,6 +453,8 @@ php artisan make:migration AddPolymorphToCommentsTable
 Str::plural($tablename);
 
 # Mail
+https://mailtrap.io/inboxes/354826/messages
+
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
 MAIL_PORT=2525
@@ -461,3 +463,6 @@ MAIL_PASSWORD=...
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS=null
 MAIL_FROM_NAME="${APP_NAME}"
+
+**make mail command**
+php artisan make:mail CommentPosted
