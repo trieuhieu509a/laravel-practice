@@ -466,3 +466,7 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 **make mail command**
 php artisan make:mail CommentPosted
+php artisan make:mail CommentPostedMarkdown --markdown=emails.posts.commented-markdown.blade.php
+
+** copy vendor to resource application view **
+php artisan vendor:publish --tag=laravel-mail
