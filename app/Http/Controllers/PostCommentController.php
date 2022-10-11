@@ -25,7 +25,7 @@ class PostCommentController extends Controller
 
         Mail::to($post->user)->send(
 //            new CommentPosted($comment)
-            new CommentPostedMarkdown()
+            new CommentPostedMarkdown($comment)
         );
 
 //        $request->session()->flash('status', 'Comment was created!');
