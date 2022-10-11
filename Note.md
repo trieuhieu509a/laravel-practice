@@ -479,3 +479,8 @@ php artisan queue:table
 php artisan migrate
 **run job by command**
 php artisan queue:work --tries=3
+**killed all co-workers processors ( only quit after processed their current job )**
+php artisan queue:restart
+**create and dispatching with failed jobs**
+php artisan make:job NotifyUsersPostWasCommented
+
