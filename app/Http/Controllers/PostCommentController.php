@@ -30,10 +30,14 @@ class PostCommentController extends Controller
 //            new CommentPostedMarkdown($comment)
 //        );
 
-        Mail::to($post->user)->later(
-            $when,
+        Mail::to($post->user)->queue(
             new CommentPostedMarkdown($comment)
         );
+
+//        Mail::to($post->user)->later(
+//            $when,
+//            new CommentPostedMarkdown($comment)
+//        );
 
 //        $request->session()->flash('status', 'Comment was created!');
 

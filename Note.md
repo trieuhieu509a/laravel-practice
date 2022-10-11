@@ -478,4 +478,4 @@ QUEUE_CONNECTION=sync => QUEUE_CONNECTION=database
 php artisan queue:table
 php artisan migrate
 **run job by command**
-php artisan queue:work
+php artisan queue:work --tries=3
