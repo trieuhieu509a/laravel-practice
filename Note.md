@@ -470,3 +470,12 @@ php artisan make:mail CommentPostedMarkdown --markdown=emails.posts.commented-ma
 
 ** copy vendor to resource application view **
 php artisan vendor:publish --tag=laravel-mail
+
+# Queues and Background Processing
+**change config:**
+QUEUE_CONNECTION=sync => QUEUE_CONNECTION=database
+**create job table**
+php artisan queue:table
+php artisan migrate
+**run job by command**
+php artisan queue:work
