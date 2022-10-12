@@ -484,3 +484,7 @@ php artisan queue:restart
 **create and dispatching with failed jobs**
 php artisan make:job NotifyUsersPostWasCommented
 
+course 224:
+php artisan make:mail CommentPostedOnPostWatched --markdown=emails.posts.comment-posted-on-watched
+
+
