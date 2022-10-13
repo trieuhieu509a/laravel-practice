@@ -483,6 +483,7 @@ php artisan queue:work --tries=3
 php artisan queue:restart
 **create and dispatching with failed jobs**
 php artisan make:job NotifyUsersPostWasCommented
+php artisan make:job ThrottledMail
 
 course 224:
 php artisan make:mail CommentPostedOnPostWatched --markdown=emails.posts.comment-posted-on-watched
