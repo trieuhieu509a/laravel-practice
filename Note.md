@@ -488,4 +488,7 @@ php artisan make:job ThrottledMail
 course 224:
 php artisan make:mail CommentPostedOnPostWatched --markdown=emails.posts.comment-posted-on-watched
 
-
+// don't run 2 times every 12 second
+Redis::throttle('mailtrap')->allow(2)->every(12)->then(function () {
+// if fail return job back to queue after 5 second
+return $this->release(5);
