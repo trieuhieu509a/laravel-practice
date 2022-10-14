@@ -478,7 +478,10 @@ QUEUE_CONNECTION=sync => QUEUE_CONNECTION=database
 php artisan queue:table
 php artisan migrate
 **run job by command**
+php artisan queue:work
 php artisan queue:work --tries=3
+php artisan queue:work --tries=3 --timeout=15
+php artisan queue:work --tries=3 --timeout=15 --queue=high,default,low : queue will run follow: high > default > low
 **killed all co-workers processors ( only quit after processed their current job )**
 php artisan queue:restart
 **create and dispatching with failed jobs**
