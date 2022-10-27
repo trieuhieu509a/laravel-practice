@@ -500,3 +500,7 @@ return $this->release(5);
 **227. Model Observers**
 php artisan make:observer BlogPostObserver --model=BlogPost
 php artisan make:observer CommentObserver --model=Comment
+
+**229. Custom Event and Listener**
+php artisan make:event CommentPosted
+php artisan make:listener NotifyUsersAboutComment
