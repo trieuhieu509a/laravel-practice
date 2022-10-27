@@ -504,3 +504,8 @@ php artisan make:observer CommentObserver --model=Comment
 **229. Custom Event and Listener**
 php artisan make:event CommentPosted
 php artisan make:listener NotifyUsersAboutComment
+
+**231 Logging basics in Laravel**
+Log::info("Hello");
+Log::warning("Warning");
+Log::error("Something really bad");
