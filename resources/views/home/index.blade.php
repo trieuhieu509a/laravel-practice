@@ -11,4 +11,8 @@
     <p>{{ trans_choice('messages.plural', 2, ['a' => 1]) }}</p>
 
     <p>This is the content of the main page!</p>
+
+    <p>Using JSON: {{ __('Welcome to Laravel!') }}</p>
+    <p>Using JSON: {{ __('Hello :name', ['name' => 'Piotr']) }}</p>
+
 @endsection
