@@ -38,7 +38,7 @@
             {{--    @endif--}}
 
             <p>{{ trans_choice('messages.people.reading', $counter) }}</p>
-            <p>Currently usersKey: {{ $usersKey }}</p>
+{{--            <p>Currently usersKey: {{ $usersKey }}</p>--}}
             <h4>{{ __('Comments') }}</h4>
 
             <x-commentForm route="{{ route('posts.comments.store', ['post' => $post->id]) }}"></x-commentForm>
