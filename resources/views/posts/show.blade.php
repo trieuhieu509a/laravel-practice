@@ -12,7 +12,7 @@
                 <h1>
             @endif
                 {{ $post->title }}
-                <x-badge :show="(now()->diffInMinutes($post->created_at) < 3000000000000)" :slot="'Brand new Post!'">New Post!</x-badge>
+                <x-badge :show="(now()->diffInMinutes($post->created_at) < 3000000000000)" :slot="'Brand new Post!'">{{ __('Brand new Post!') }}</x-badge>
             @if($post->image)
                 </h1>
             </div>
@@ -25,7 +25,7 @@
             <img src="{{ $post->image ? Storage::url($post->image->path) : '' }}" />
 
             <x-updated :date="$post->created_at" :name="$post->user->name"></x-updated>
-            <x-updated :date="$post->updated_at">Updated</x-updated>
+            <x-updated :date="$post->updated_at">{{ __('Updated') }}</x-updated>
 
             {{--    @if ((new Carbon\Carbon())->diffInMinutes($post->created_at) < 2000)--}}
             {{--        @component('badge', ['type' => 'primary'])--}}
@@ -37,9 +37,9 @@
             {{--        </x-badge>--}}
             {{--    @endif--}}
 
-            <p>Currently read by {{ $counter }} people</p>
+            <p>{{ trans_choice('messages.people.reading', $counter) }}</p>
             <p>Currently usersKey: {{ $usersKey }}</p>
-            <h4>Comments</h4>
+            <h4>{{ __('Comments') }}</h4>
 
             <x-commentForm route="{{ route('posts.comments.store', ['post' => $post->id]) }}"></x-commentForm>
             <x-commentList :comments="$post->comments"></x-commentList>

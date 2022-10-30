@@ -11,6 +11,8 @@
         @csrf
         @include('posts._form')
 
-        <div><input type="submit" value="Create" class="btn btn-primary btn-block"></div>
+        <div>
+            <button type="submit" class="btn btn-primary btn-block">{{ __('Create!') }}</button>
+        </div>
     </form>
 @endsection
