@@ -23,7 +23,9 @@ use App\Services\Counter;
 // ]
 class PostsController extends Controller
 {
-    public function __construct()
+    private $counter;
+
+    public function __construct(Counter $counter)
     {
         $this->middleware('auth')
             ->only(['create', 'store', 'edit', 'update', 'destroy']);
@@ -124,11 +126,11 @@ class PostsController extends Controller
                 ->findOrFail($id);
         });
 
-        $counter = resolve(Counter::class);
+        // $counter = resolve(Counter::class);
 
         return view('posts.show', [
             'post' => $blogPost,
-            'counter' => $counter->increment("blog-post-{$id}"),
+            'counter' => $this->counter->increment("blog-post-{$id}", ['blog-post']),
 //            'usersKey' => count(Cache::get($usersKey, [])),
         ]);
     }
