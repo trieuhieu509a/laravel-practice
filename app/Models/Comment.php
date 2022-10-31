@@ -15,7 +15,7 @@ class Comment extends Model
 
     protected $fillable = ['user_id', 'content'];
 
-    protected $hidden = ['deleted_at', 'commentable_type', 'commentable_id'];
+    protected $hidden = ['deleted_at', 'commentable_type', 'commentable_id', 'user_id'];
 
     // function name is blogPost ( camel case , laravel will look for blog_post_id
     // function name is post ( camel case , laravel will look for post_id
