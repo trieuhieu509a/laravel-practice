@@ -17,8 +17,12 @@ class PostCommentController extends Controller
         $this->middleware('auth')->only(['store']);
     }
 
+    //http://192.168.56.101:8000/posts/1/comments
     public function index(BlogPost $post)
     {
+        // dump(is_array($post->comments));
+        // dump(get_class($post->comments));
+        // die;
         return $post->comments;
     }
 
