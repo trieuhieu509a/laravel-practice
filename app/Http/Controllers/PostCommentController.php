@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreComment;
+use App\Http\Resources\Comment as CommentResource;
 use App\Jobs\NotifyUsersPostWasCommented;
 use App\Jobs\ThrottledMail;
 use App\Models\BlogPost;
@@ -24,7 +25,8 @@ class PostCommentController extends Controller
         // dump(get_class($post->comments));
         // die;
 //        return $post->comments;
-        return $post->comments()->with('user')->get();
+        return CommentResource::collection($post->comments);
+        // return $post->comments()->with('user')->get();
     }
 
     public function store(BlogPost $post, StoreComment $request)
