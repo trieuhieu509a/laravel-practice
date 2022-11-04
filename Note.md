@@ -509,3 +509,6 @@ php artisan make:listener NotifyUsersAboutComment
 Log::info("Hello");
 Log::warning("Warning");
 Log::error("Something really bad");
+
+**work with api**
+php artisan route:list | grep api
