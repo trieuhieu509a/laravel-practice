@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+// auth:api => use 'auth' middleware with guard 'api', can be find in config/auth.php => guards.api
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -46,7 +46,7 @@ Route::get('mailable', function () {
 
 Auth::routes();
 
-Route::get('/single', AboutController::class);
+Route::get('/single', [AboutController::class, 'index']);
 
 $posts = [
     1 => [
