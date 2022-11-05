@@ -511,4 +511,5 @@ Log::warning("Warning");
 Log::error("Something really bad");
 
 **work with api**
+php artisan make:controller Api/V1/PostCommentController --api
 php artisan route:list | grep api

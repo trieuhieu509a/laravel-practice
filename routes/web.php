@@ -67,7 +67,7 @@ $posts = [
     ]
 ];
 
-Route::resource('posts', PostsController::class);
+Route::resource('posts', 'PostsController');
 // ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
 
 // Route::get('/posts', function () use ($posts) {
