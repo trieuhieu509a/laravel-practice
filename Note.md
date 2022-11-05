@@ -513,3 +513,12 @@ Log::error("Something really bad");
 **work with api**
 php artisan make:controller Api/V1/PostCommentController --api
 php artisan route:list | grep api
+```
+'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+            // 'input_key' => 'api_token', // change token name from 'token' to 'input_key'
+            // 'storage_key' => 'api_token' // field name for store in database
+        ]
+```
