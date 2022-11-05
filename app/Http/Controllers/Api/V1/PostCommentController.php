@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\CommentPosted;
 use App\Models\BlogPost;
 use App\Http\Resources\Comment as CommentResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComment;
 
 class PostCommentController extends Controller
 {
@@ -24,7 +26,7 @@ class PostCommentController extends Controller
 
     public function index(BlogPost $post, Request $request)
     {
-        $perPage = (int) $request->input('per_page') ?? 15;
+        $perPage = $request->input('per_page') ?? 15;
         return CommentResource::collection(
             $post->comments()->with('user')->paginate($perPage)->appends(
                 [
@@ -40,9 +42,13 @@ class PostCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogPost $post, StoreComment $request)
     {
-        //
+        $comment = $post->comments()->create([
+            'content' => $request->input('content'),
+            'user_id' => $request->user()->id
+        ]);
+        event(new CommentPosted($comment));
     }
 
     /**
