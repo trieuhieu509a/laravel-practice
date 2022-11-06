@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -46,20 +47,20 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception $exception
-     * @return \Illuminate\Http\Response
+     * @param Throwable $e
+     * @return Response
      * @throws Throwable
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $e): Response
     {
-        if ($request->expectsJson() && $exception instanceof ModelNotFoundException) {
+        if ($request->expectsJson() && $e instanceof ModelNotFoundException) {
             return Route::respondWithRoute('api.fallback');
         }
 
-        if ($request->expectsJson() && $exception instanceof AuthorizationException) {
-            return response()->json(['message' => $exception->getMessage()], 403);
+        if ($request->expectsJson() && $e instanceof AuthorizationException) {
+            return response()->json(['message' => $e->getMessage()], 403);
         }
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }
