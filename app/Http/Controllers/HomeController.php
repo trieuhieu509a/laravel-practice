@@ -22,6 +22,12 @@ class HomeController extends Controller
 
     public function contact()
     {
+        $user = User::find(1);
+
+        foreach ($user->notifications as $notification) {
+            echo $notification->type;
+        }
+        die;
         return view('home.contact');
     }
 

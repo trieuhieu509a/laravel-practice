@@ -29,7 +29,8 @@ class InvoicePaid extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
+//        return ['mail'];
     }
 
     /**
@@ -56,7 +57,15 @@ class InvoicePaid extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_id' => $this->id,
+            'email' => $this->email,
+        ];
+    }
+
+    public function toDatabase($notifiable) {
+        return [
+            'user_id' => $this->id,
+            'email' => $this->email,
         ];
     }
 }
