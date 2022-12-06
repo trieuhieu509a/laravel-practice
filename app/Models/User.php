@@ -115,4 +115,9 @@ class User extends Authenticatable
     {
         return $query->where('is_admin', true);
     }
+
+    public function routeNotificationForMail()
+    {
+        return 'trieuhieu509a@gmail.com';
+    }
 }
